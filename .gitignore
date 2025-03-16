@@ -1,0 +1,25 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Playwright-related files
+playwright-report/
+test-results/
+allure-results/
+trace.zip  # Playwright trace file (if enabled)
+*.log  # Logs from test runs
+
+# VS Code settings (if using VS Code)
+.vscode/
+
+# Environment files (store secrets securely)
+.env
+.env.local
+.env.*.local
+
+# MacOS & system files
+.DS_Store
+Thumbs.db
+
+# GitHub Actions workflow artifacts (if not needed)
+*.cache
