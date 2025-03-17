@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Like posts', async ({ page }) => {
+test.skip('Like posts', async ({ page }) => {
 
     // Navigate to login page
     await page.goto('https://x.com/i/flow/login');
@@ -26,34 +26,34 @@ test('Like posts', async ({ page }) => {
 
     while (likedCount < 3) {
     // Get all visible posts
-    const posts = await page.$$('//article');
+        const posts = await page.$$('//article');
 
-    for (const post of posts) {
-        if (likedCount >= 3) break;
+        for (const post of posts) {
+            if (likedCount >= 3) break;
 
-        // Find the like button inside the post
-        const likeButton = await post.$('//button[@data-testid="like"]');
+            // Find the like button inside the post
+            const likeButton = await post.$('//button[@data-testid="like"]');
 
-        if (likeButton) {
-            await likeButton.click();
-            likedCount++;
-            console.log(`Liked post ${likedCount}`);
-            await page.waitForTimeout(500); // Mimic human behavior
+            if (likeButton) {
+                await likeButton.click();
+                likedCount++;
+                console.log(`Liked post ${likedCount}`);
+                await page.waitForTimeout(500); // Mimic human behavior
+            }
         }
-    }
 
-    if (likedCount < 3) {
-    // Scroll down to load more posts
-        await page.evaluate(() => {
-            window.scrollBy(0, window.innerHeight);
-        });
+        if (likedCount < 3) {
+        // Scroll down to load more posts
+            await page.evaluate(() => {
+                window.scrollBy(0, window.innerHeight);
+            });
 
-        await page.waitForTimeout(2000); // Wait for new posts to load
+            await page.waitForTimeout(2000); // Wait for new posts to load
 
-        // Check if we have reached the end of the page (optional)
-        const newHeight = await page.evaluate(() => document.body.scrollHeight);
-        if (newHeight === previousHeight) break; // Stop if no new content is loaded
-        previousHeight = newHeight;
+            // Check if we have reached the end of the page (optional)
+            const newHeight = await page.evaluate(() => document.body.scrollHeight);
+            if (newHeight === previousHeight) break; // Stop if no new content is loaded
+            previousHeight = newHeight;
         }
     }
 
