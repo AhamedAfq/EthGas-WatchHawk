@@ -11,6 +11,8 @@
   "devDependencies": {
     "@types/dotenv-safe": "^8.1.6",
     "@types/node": "^22.13.10",
-    "@types/nodemailer": "^6.4.17"
+    "@types/nodemailer": "^6.4.17",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.4.5"
   }
 }
