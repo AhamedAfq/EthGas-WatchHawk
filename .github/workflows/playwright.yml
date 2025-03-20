@@ -25,23 +25,23 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Node.js types
-        run: npm i --save-dev @types/node
+      - name: Install TypeScript and ts-node
+        run: npm install -g typescript ts-node
 
-      - name: Install ts-node
-        run: npm install -g ts-node
+      - name: Compile TypeScript
+        run: tsc
+
+      - name: Ensure logs directory exists
+        run: mkdir -p logs
 
       - name: Run Ethereum Gas Tracker
-        run: npx ts-node ethereum_gas_tracker.ts
+        run: node dist/ethereum_gas_tracker.js
         env:
           ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
           GAS_THRESHOLD: ${{ secrets.GAS_THRESHOLD }}
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
           RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
-
-      - name: Ensure logs directory exists
-        run: mkdir -p logs
 
       - name: Upload logs
         if: always()
