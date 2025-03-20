@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Ethereum Gas Tracker
 
 on: 
   push:
@@ -7,10 +7,12 @@ on:
   pull_request:
     branches:
       - master
+  # schedule:
+  #   - cron: '0 * * * *'  # Runs every hour
   workflow_dispatch:    
 
 jobs:
-  test:
+  gas-tracker:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,18 +25,21 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install  # Use 'npm install' if no package-lock.json
+        run: npm install
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      - name: Run Ethereum Gas Tracker
+        run: node src/ethereum_gas_tracker.ts
+        env:
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
+          GAS_THRESHOLD: ${{ secrets.GAS_THRESHOLD }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
 
-      - name: Run Playwright tests
-        run: npx playwright test
-
-      - name: Upload Playwright report
+      - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
-          path: playwright-report/
+          name: gas-tracker-logs
+          path: logs/
           retention-days: 7
