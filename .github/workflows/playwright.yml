@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Node.js types
+      run: npm i --save-dev @types/node  
+
       - name: Install ts-node
         run: npm install -g ts-node
 
