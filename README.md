@@ -1,4 +1,4 @@
-# Playwright-Maestro
+# EthGas-WatchHawk
 A scalable and efficient automation framework orchestrating seamless UI testing with Playwright.
 
 # 🚀 Ethereum Gas Tracker  
