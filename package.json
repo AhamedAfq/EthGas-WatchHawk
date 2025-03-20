@@ -1,22 +1,12 @@
 {
-  "name": "playwright-maestro",
-  "version": "1.0.0",
-  "description": "A scalable and efficient automation framework orchestrating seamless UI testing with Playwright.",
-  "main": "index.js",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AhamedAfq/Playwright-Maestro.git"
+  "dependencies": {
+    "@playwright/test": "^1.51.1",
+    "dotenv": "^16.4.7",
+    "nodemailer": "^6.10.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AhamedAfq/Playwright-Maestro/issues"
-  },
-  "homepage": "https://github.com/AhamedAfq/Playwright-Maestro#readme",
   "devDependencies": {
-    "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.8"
+    "@types/dotenv-safe": "^8.1.6",
+    "@types/node": "^22.13.10",
+    "@types/nodemailer": "^6.4.17"
   }
 }
